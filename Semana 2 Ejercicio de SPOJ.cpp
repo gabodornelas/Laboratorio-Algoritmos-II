@@ -2,13 +2,12 @@
 using namespace std;
 #include <vector>
 #include <utility>
-
+//RKS - RK Sorting
 // A medida que el codigo recibe valores, si no ha recibido valores iguales a ese genera 
-//un par ordenado (con el valor y la cantidad) que guarda en un nuevo arreglo, y si ya se 
-//recibieron valores iguales a ese, los busca en el nuevo arreglo y le suma a la cuenta.
-//Luego de eso ordena con bubblesort el nuevo arreglo para luego imprimir el resultado
+//un par ordenado (con el valor y la cantidad de ocurrencuas) que guarda en un nuevo arreglo de pares, y si ya se 
+//recibieron valores iguales a ese, los busca en el arreglo de pares y le suma a la cuenta de ocurrencias.
+//Luego de eso ordena con bubblesort el nuevo arreglo (por cantidad de ocurrencias) de mayor a menor, para luego imprimir el resultado
 //esperado
-
 
 bool esta(vector<int> message, int i){
   for(int j=0; j<i; j++){
@@ -28,17 +27,17 @@ int main()
     cin >> message[i];
     if (esta(message,i)==false){
       pair<int,int> par;
-      cont++;
+      cont++; // cuenta cuantos elementos distintos hay.
       cuantos.resize(cont);
       par.first=message[i]; par.second=1;
       cuantos[cont-1] = par;
-    }else{
+    }else{  //recibió un valor repetido, lo busca para sumarle a la cuenta.
       for(int j=0; j<cont;j++){
         if (cuantos[j].first == message[i]) cuantos[j].second++;
       }
     }
   }
-  for(int i=0; i<cont; i++){
+  for(int i=0; i<cont; i++){  //ordena
     for(int j=cont-1; j>i; j--){
       if(cuantos[j].second > cuantos[j-1].second){
         temp = cuantos[j];
@@ -48,7 +47,9 @@ int main()
     }
   }
   for(int i=0; i<cont; i++){
-    for(int k=0; k<cuantos[i].second; k++) cout << cuantos[i].first << " "; 
+    for(int k=0; k<cuantos[i].second; k++){
+      cout << cuantos[i].first << " ";
+    }
   }
   return 0;
 }
