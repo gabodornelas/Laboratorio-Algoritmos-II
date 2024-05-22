@@ -1,7 +1,9 @@
 #include <iostream>
 using namespace std;
 #include <vector>
-
+//A. Card Exchange
+//Luego de recibir todos los datos se llama a la función "ocurrencias" para verificar si hay al menos "z" ocurrencias de alguna carta, si las hay
+//la respuesta es "z-1", sino, es "y".
 bool ocurrencias(vector<int> cards,int y, int z){  
   int cont;
   for(int j=0; j < y; j++){
