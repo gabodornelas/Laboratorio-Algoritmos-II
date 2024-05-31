@@ -4,6 +4,7 @@ using namespace std;
 #include <utility>
 
 /*/
+B. Collecting Game
 Se define la clase "as", con lo elementos "valor" (el valor del elemento del arreglo), "posicion" (la posición original del elemento en el arreglo) y "score" (luego de ordenar la lista,
 score tendrá la suma de los elementos anteriores al elemento actual más el elemento actual). Si el score supera a 1.000.000.000, se deja como score a 1.000.000.000
 
