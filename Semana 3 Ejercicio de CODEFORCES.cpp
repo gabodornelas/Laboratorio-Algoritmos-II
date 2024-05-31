@@ -2,12 +2,24 @@
 using namespace std;
 #include <vector>
 #include <utility>
- 
+
+/*/
+Se define la clase "as", con lo elementos "valor" (el valor del elemento del arreglo), "posicion" (la posición original del elemento en el arreglo) y "score" (luego de ordenar la lista,
+score tendrá la suma de los elementos anteriores al elemento actual más el elemento actual). Si el score supera a 1.000.000.000, se deja como score a 1.000.000.000
+
+Luego de recibir los valores, se ordena con mergesort, se le asigna como respuesta del último elemento, su posición, es decir, si son n elementos, el último supera a n-1 elementos,
+y luego desde la posición n-1 hasta la posición 1, se verifica que el score del elemento actual sea distinto de 1.000.000.000, si no lo es, la resp del anterior será la misma que la
+del elemento actual, se verifica que el valor del elemento actual sea distinto al valor del elemento anterior, si no lo es, la resp del anterior será la misma que la del elemento actual,
+se verifica el score del elemento anterior y si este supera al valor del elemento actual, entonces la respuesta del anterior será la misma que la del elemento actual, si no, entonces la
+respuesta del anterior será su posición. Las respuestas se guardan en otro arreglo en las mismas posiciones que tenían los elementos originalmente, para eso se asignó "posición".
+Al final se recorre el arreglo de respuesta imprimiendo los resultados esperados.
+/*/
+
 class as{
   public:
-    int valor;
-    int posicion;
-    long long score;
+    int valor;           //el valor del elemento del arreglo
+    int posicion;        //la posición original del elemento en el arreglo
+    long long score;     //la suma de los elementos anteriores (luego de ordenar la lista) al elemento actual más el elemento actual
 };
  
 void merge(vector<as > &stall, int ini, int fin, int med){
@@ -41,8 +53,10 @@ void merge(vector<as > &stall, int ini, int fin, int med){
         }
       }
     }
-    score=score+stall[ini+a].valor;
-    if(score >= 1000000000){
+   //En cada iteración de merge se asignan scores con los ordenes de los subarreglos, es decir, no necesariamente el orden final, pero no afectan el resultado final ya que se
+   //cambia el score con cada iteración
+    score=score+stall[ini+a].valor;    
+    if(score >= 1000000000){           //Si el score supera a 1.000.000.000, se deja como score a 1.000.000.000
       score=1000000000;
     }
     stall[ini+a].score=score;
@@ -62,8 +76,8 @@ vector<int> removals(vector<as > stall, int n){
   vector<int> answer(n);
   answer[stall[n-1].posicion] = n-1;
   for(int y=n-1;y>0;y--){
-    if(stall[y-1].score != 1000000000){
-      if(stall[y].valor != stall[y-1].valor){
+    if(stall[y-1].score != 1000000000){   //caso base
+      if(stall[y].valor != stall[y-1].valor){     //caso base
         if( (stall[y-1].score) >= stall[y].valor ){
           answer[stall[y-1].posicion] = answer[stall[y].posicion];
         }else{
@@ -90,7 +104,7 @@ int main()
     for(int j=0;j<n;j++){
       cin >> par.valor;
       par.posicion=j;
-      par.score=par.valor;
+      par.score=par.valor;   //score momentáaneo
       pares[j]=par;
     }
     mergesort(pares,0,n);
