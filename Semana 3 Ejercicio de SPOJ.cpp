@@ -4,9 +4,10 @@ using namespace std;
 
 /*/
 AGGRCOW - Aggressive cows
-Luego de recibir los valores, se ordenan usando mergesort, se revisan los casos base y posteriormente se busca la ubicación "point" del
-valor medio posible (med) para la distancia entre dos establos, se chequea si esa distancia es permitida (si "cabe"), es decir, que a partir de ella
-se pueden conseguir las otras posiciones restantes cumpliendo con la distancia "med", si es así, el med aumenta, sino, disminuye.
+Luego de recibir los valores, se ordenan usando mergesort, se revisan los casos base y posteriormente se busca con busqueda binaria
+la ubicación "point" del valor medio posible (med) para la distancia entre dos establos, se chequea si esa distancia es permitida
+(si "cabe"), es decir, que a partir de ella se pueden conseguir las otras posiciones restantes cumpliendo con la distancia "med",
+si es así, el med aumenta, sino, disminuye.
 
 "med" es la distancia media entre el máximo "max" y el mínimo "min", si "cabe" esa distancia, entonces el med queda como respuesta "resp"
 provisional, el mínimo pasa a ser med y se sigue iterando, si no "cabe", el max pasa a ser med y continúa la iteración. Esto sigue hasta
