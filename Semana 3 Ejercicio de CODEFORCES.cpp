@@ -72,7 +72,7 @@ void mergesort(vector<as > &stall, int ini, int fin){
     merge(stall,ini,fin,(ini+fin)/2);
   }
 }
- 
+ //Desde n-1 hasta 1, verifica el resultado del elemento anterior, retorna el vector respuesta
 vector<int> removals(vector<as > stall, int n){
   vector<int> answer(n);
   answer[stall[n-1].posicion] = n-1;
@@ -108,7 +108,7 @@ int main()
       par.score=par.valor;   //score momentáaneo
       pares[j]=par;
     }
-    mergesort(pares,0,n);
+    mergesort(pares,0,n);    //ordena
     vector<int> resp(n);
     resp=removals(pares,n);
     for(int j=0;j<n;j++){
