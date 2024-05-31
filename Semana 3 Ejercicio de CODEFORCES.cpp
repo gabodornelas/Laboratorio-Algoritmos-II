@@ -20,7 +20,7 @@ class as{
   public:
     int valor;           //el valor del elemento del arreglo
     int posicion;        //la posición original del elemento en el arreglo
-    long long score;     //la suma de los elementos anteriores (luego de ordenar la lista) al elemento actual más el elemento actual
+    long long score;     //la suma de los elementos anteriores al elemento actual (luego de ordenar la lista) más el elemento actual
 };
  
 void merge(vector<as > &stall, int ini, int fin, int med){
@@ -54,8 +54,9 @@ void merge(vector<as > &stall, int ini, int fin, int med){
         }
       }
     }
-   //En cada iteración de merge se asignan scores con los ordenes de los subarreglos, es decir, no necesariamente el orden final, pero no afectan el resultado final ya que se
-   //cambia el score con cada iteración
+   //En cada llamada a merge se asignan scores con los ordenes de los subarreglos, es decir, no necesariamente el orden final, pero no afectan el resultado final ya que se
+   //cambia el score con cada llamada, por lo tanto cuando mezcle las 2 ultimas mitades dará como resultado la lista ordenada, y por lo tanto
+   //cada elemento tendrá su score esperado
     score=score+stall[ini+a].valor;    
     if(score >= 1000000000){           //Si el score supera a 1.000.000.000, se deja como score a 1.000.000.000
       score=1000000000;
@@ -72,7 +73,7 @@ void mergesort(vector<as > &stall, int ini, int fin){
     merge(stall,ini,fin,(ini+fin)/2);
   }
 }
- //Desde n-1 hasta 1, verifica el resultado del elemento anterior, retorna el vector respuesta
+ //Desde n-1 hasta 1, verifica el score del elemento anterior, retorna el vector respuesta
 vector<int> removals(vector<as > stall, int n){
   vector<int> answer(n);
   answer[stall[n-1].posicion] = n-1;
