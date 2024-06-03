@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
-#include <utility>
+
 /*/RKS - RK Sorting
 
 Se crea la clase "numeros" que contiene valor, cantidad y posición de los valores en el arreglo original.
