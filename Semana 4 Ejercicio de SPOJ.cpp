@@ -5,9 +5,11 @@ using namespace std;
 /*/MATRMUL0 - Matrix Multiplication 2K
 Utilizando vectores copiamos las matrices A y B, si n no es algúna potencia de 2, se busca (con busqueda binaria) la potencia de
 2 más próxima en una ista de potencias de 2 y se rellenan con 0 las matrices desde n hasta esa potencia de 2. Luego implementamos
-el algoritmo de Strassen (AporB) para obtener la multiplicación de A por B, y finalmente copiamos la matriz resultante de la multiplicación en C.
+el algoritmo de Strassen (AporB) para obtener la multiplicación de A por B, y finalmente copiamos la matriz resultante de la
+multiplicación en C.
 
-Nota: SPOJ no me aceptó la solución por limite de tiempo a partir del test 3, probando por mi cuenta en ideone concluí que para n entre 129 y 256 se tardaba aprox 5s, por lo tanto para números más grandes se excedía del tiempo. Sin embargo, sé que mi solución
+Nota: SPOJ no me aceptó la solución por limite de tiempo a partir del test 3, probando por mi cuenta en ideone concluí que para n
+entre 129 y 256 se tardaba aprox 5s, por lo tanto para números más grandes se excedía del tiempo. Sin embargo, sé que mi solución
 resuelve el problema, aunque no en el tiempo estipulado.
 Me gustaría saber cuál era la solución más eficiente y me disculpo por fallar esta semana :(.
 /*/
