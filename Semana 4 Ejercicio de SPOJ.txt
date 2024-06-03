@@ -1,0 +1,161 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+
+
+vector<vector<long long> > get(vector<vector<long long> > X, uint32_t i, uint32_t j, uint32_t n){
+  vector<vector<long long> > devuelve(n);
+  vector<long long> devuelvef(n);
+  for(uint32_t k=0;k<n;k++){
+    for(uint32_t h=0;h<n;h++){
+      devuelvef[h] = X[k+i][h+j];
+    }
+    devuelve[k] = devuelvef;
+  }
+  return devuelve;
+}
+
+vector<vector<long long> > suma(vector<vector<long long> > A, vector<vector<long long> > B, uint32_t n){
+  vector<vector<long long> > sum(n);
+  vector<long long> sumf(n);
+  for(uint32_t k=0;k<n;k++){
+    for(uint32_t h=0;h<n;h++){
+      sumf[h] = A[k][h] + B[k][h];
+    }
+    sum[k] = sumf;
+  }
+  return sum;
+}
+
+vector<vector<long long> > resta(vector<vector<long long> > A, vector<vector<long long> > B, uint32_t n){
+  vector<vector<long long> > res(n);
+  vector<long long> resf(n);
+  for(uint32_t k=0;k<n;k++){
+    for(uint32_t h=0;h<n;h++){
+        resf[h] = A[k][h] - B[k][h];
+    }
+    res[k] = resf;
+  }
+  return res;
+}
+
+vector<vector<long long> > arma(vector<vector<long long> > C1, vector<vector<long long> > C2, vector<vector<long long> > C3, vector<vector<long long> > C4, uint32_t n){
+  vector<vector<long long> > C(n);
+  vector<long long> Cf1(n);
+  vector<long long> Cf2(n);
+  for(uint32_t k=0;k<n/2;k++){
+    for(uint32_t h=0;h<n/2;h++){
+      Cf1[h] = C1[k][h];
+      Cf1[h+n/2] = C2[k][h];
+      Cf2[h] = C3[k][h];
+      Cf2[h+n/2] = C4[k][h];
+    }
+    C[k] = Cf1;
+    C[k+n/2] = Cf2;
+  }
+  return C;
+}
+
+vector<vector<long long> > AporB(vector<vector<long long> > A, vector<vector<long long> > B, uint32_t n){
+  if(n==1){
+  	vector<long long> num(1);
+  	num[0]=A[0][0]*B[0][0];
+  	vector<vector<long long> > numm(1);
+  	numm[0]=num;
+    return numm;
+  }else{
+    vector<vector<long long> > M1(n/2), M2(n/2), M3(n/2), M4(n/2), M5(n/2), M6(n/2), M7(n/2);
+    M1 = AporB(get(A,0,0,n/2), resta(get(B,0,n/2,n/2), get(B,n/2,n/2,n/2), n/2), n/2);
+    M2 = AporB(suma(get(A,0,0,n/2), get(A,0,n/2,n/2), n/2), get(B,n/2,n/2,n/2), n/2);
+    M3 = AporB(suma(get(A,n/2,0,n/2), get(A,n/2,n/2,n/2),n/2), get(B,0,0,n/2), n/2);
+    M4 = AporB(get(A,n/2,n/2,n/2), resta(get(B,n/2,0,n/2), get(B,0,0,n/2),n/2), n/2);
+    M5 = AporB(suma(get(A,0,0,n/2), get(A,n/2,n/2,n/2),n/2), suma(get(B,0,0,n/2), get(B,n/2,n/2,n/2),n/2), n/2);
+    M6 = AporB(resta(get(A,0,n/2,n/2), get(A,n/2,n/2,n/2),n/2), suma(get(B,n/2,0,n/2), get(B,n/2,n/2,n/2),n/2), n/2);
+    M7 = AporB(resta(get(A,0,0,n/2), get(A,n/2,0,n/2),n/2), suma(get(B,0,0,n/2), get(B,0,n/2,n/2),n/2), n/2);
+    
+    vector<vector<long long> > C1(n/2), C2(n/2), C3(n/2), C4(n/2);
+    C1 = suma(M5,suma(M4,resta(M6,M2,n/2),n/2),n/2);
+    C2 = suma(M1,M2,n/2);
+    C3 = suma(M3,M4,n/2);
+    C4 = suma(resta(M5,M7,n/2),resta(M1,M3,n/2),n/2);
+    
+    return arma(C1,C2,C3,C4,n);
+  }
+}
+
+uint32_t busqbin(vector<uint32_t> stall, int i, int j, uint32_t n){
+  int mid;
+  if(i==j){
+    return i;
+  }else{  
+    mid=(i+j)/2;
+    if( (stall[mid]) < n ){
+      return busqbin(stall,mid+1,j,n);
+    }else{
+      return busqbin(stall,i,mid,n);
+    }
+  }
+}
+
+
+int main() 
+{
+  uint32_t n, i, j, d1, p1, r1, m1, d2, p2, m2, r2, A[n][n], B[n][n];
+  long long C[n][n], V[n];
+  //here you need to read n, p1, d1, r1, m1, p2, d2, r2, m2 from input.
+  cin >> n >> p1 >> d1 >> r1 >> m1 >> p2 >> d2 >> r2 >> m2;
+  //done
+  for (i=0; i<n; ++i)
+    for (j=0; j<n; ++j) {
+        d1 = d1 * p1 + r1;
+        d2 = d2 * p2 + r2;
+        A[i][j] = d1 >> (32 - m1);
+        B[i][j] = d2 >> (32 - m2);
+    }
+  //here you need to calculate C=A*B
+  vector<uint32_t> potenciadedos(12);
+  potenciadedos[0]=1;   potenciadedos[1]=2;   potenciadedos[2]=4;
+  potenciadedos[3]=8;   potenciadedos[4]=16;   potenciadedos[5]=32;
+  potenciadedos[6]=64;   potenciadedos[7]=128;   potenciadedos[8]=256;
+  potenciadedos[9]=512;   potenciadedos[10]=1024;   potenciadedos[11]=2048;
+  
+  uint32_t m = potenciadedos[busqbin(potenciadedos,0,11,n)];
+  vector<vector<long long> > Am(m);
+  vector<vector<long long> > Bm(m);
+  vector<long long> Af(m);
+  vector<long long> Bf(m);
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+      Af[j] = A[i][j];
+      Bf[j] = B[i][j];
+	}
+    Bm[i] = Bf;
+    Am[i] = Af;
+  }
+  for(i=0;i<n;i++){
+  	Af[i] = 0;
+  }
+  for(i=n;i<m;i++){
+    Am[i] = Af;
+    Bm[i] = Bf;
+  }
+  vector<vector<long long> > Cm(m);
+  Cm = AporB(Am,Bm,m);
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+      C[i][j] = Cm[i][j];
+    }
+  }
+  //done
+  for (i=0; i<n; ++i) {
+    V[i] = 0;
+    for (j=0; j<n; ++j)
+      V[i] ^= C[i][j];
+  }
+  //here you need to output V[0], V[1], ..., V[n-1], separated by spaces.
+  for(uint32_t v=0;v<n;v++){
+    cout << V[v]<<" ";
+  }
+  //done
+  return 0;
+}
