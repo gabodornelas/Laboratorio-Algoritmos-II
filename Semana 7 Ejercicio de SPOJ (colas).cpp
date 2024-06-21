@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
-
+/*/
+QUEUEEZ - Easy Queue
+Se implementaron las estructuras elemento (con valor (inicializado en 0) y apuntadores al siguiente y al anterior) y cola (con un primer
+elemento inicializado nulo, y los procedimientos usnando lista doblemente enlazada de encolar (ubicando elementos al final de la cola) y
+desencolar(quitando el primer elemento de la cola) ). Luego, dependiendo del caso, 1, 2 o 3, se encola, desencola o imprime el velor del 
+primer elemento de la cola.
+/*/
 struct Elem{
   int x;
   Elem *next;
@@ -18,7 +24,7 @@ struct Cola{
   void encolar(int y){
     Elem *nuevo_elem = new Elem;
     nuevo_elem -> x = y;
-    if(pri == NULL){
+    if(pri == NULL){   // Cola vacía
       pri = nuevo_elem;
       pri -> next = pri;
       pri -> prev = pri;
@@ -35,7 +41,7 @@ struct Cola{
         pri -> prev -> next = pri -> next;
         pri -> next -> prev = pri -> prev;
         pri = pri -> next;
-      }else{
+      }else{  //Hay un solo elemento en la cola
         pri = NULL;
       }
     }
@@ -63,26 +69,3 @@ int main()
   }
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
