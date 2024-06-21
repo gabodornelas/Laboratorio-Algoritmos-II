@@ -1,5 +1,12 @@
 #include <iostream>
 using namespace std;
+/*/
+STACKEZ - Easy Stack
+Se implementaron las estructuras elemento (con valor (inicializado en 0) y apuntador al siguiente (inicializado en nulo)) y cola (con un
+primer elemento inicializado nulo, y los procedimientos usnando lista simplemente enlazada de apilar (ubicando elementos al tope de la pila)
+y desapilar (quitando el elemento del tope de la pila) ). Luego, dependiendo del caso, 1, 2 o 3, se apila, desapila o imprime el velor del 
+primer elemento de la pila.
+/*/
 
 struct Elem{
   int x;
@@ -18,7 +25,7 @@ struct Pila{
   void apilar(int y){
     Elem *nuevo_elem = new Elem;
     nuevo_elem -> x = y;
-    if(pri == NULL){
+    if(pri == NULL){  // Pila Vacía
       pri = nuevo_elem;
     }else{
       nuevo_elem -> next = pri;
