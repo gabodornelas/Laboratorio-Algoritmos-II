@@ -44,7 +44,9 @@ struct Cola{
         pri = pri -> next;
         delete pointer;
       }else{  //Hay un solo elemento en la cola
+        Elem *pointer = pri;
         pri = NULL;
+        delete pointer;
       }
     }
   }
