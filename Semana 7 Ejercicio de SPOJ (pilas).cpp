@@ -5,7 +5,7 @@ STACKEZ - Easy Stack
 Se implementaron las estructuras elemento (con valor (inicializado en 0) y apuntador al siguiente (inicializado en nulo)) y cola (con un
 primer elemento inicializado nulo, y los procedimientos, usando lista simplemente enlazada, de apilar (ubicando elementos al tope de la pila)
 y desapilar (quitando el elemento del tope de la pila y eliminandolo) ). Luego, dependiendo del caso, 1, 2 o 3, se apila, desapila o imprime
-el velor del primer elemento de la pila.
+el valor del primer elemento de la pila.
 /*/
 
 struct Elem{
