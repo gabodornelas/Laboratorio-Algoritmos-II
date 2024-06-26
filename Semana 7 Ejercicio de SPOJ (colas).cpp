@@ -5,7 +5,7 @@ QUEUEEZ - Easy Queue
 Se implementaron las estructuras elemento (con valor (inicializado en 0) y apuntadores al siguiente y al anterior) y cola (con un primer
 elemento inicializado nulo, y los procedimientos, usando lista doblemente enlazada, de encolar (ubicando elementos al final de la cola) y
 desencolar (quitando el primer elemento de la cola y eliminandolo) ). Luego, dependiendo del caso, 1, 2 o 3, se encola, desencola o imprime
-el velor del primer elemento de la cola.
+el valor del primer elemento de la cola.
 /*/
 struct Elem{
   int x;
