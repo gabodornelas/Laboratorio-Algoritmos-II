@@ -3,9 +3,9 @@ using namespace std;
 /*/
 QUEUEEZ - Easy Queue
 Se implementaron las estructuras elemento (con valor (inicializado en 0) y apuntadores al siguiente y al anterior) y cola (con un primer
-elemento inicializado nulo, y los procedimientos usnando lista doblemente enlazada de encolar (ubicando elementos al final de la cola) y
-desencolar(quitando el primer elemento de la cola) ). Luego, dependiendo del caso, 1, 2 o 3, se encola, desencola o imprime el velor del 
-primer elemento de la cola.
+elemento inicializado nulo, y los procedimientos, usando lista doblemente enlazada, de encolar (ubicando elementos al final de la cola) y
+desencolar (quitando el primer elemento de la cola y eliminandolo) ). Luego, dependiendo del caso, 1, 2 o 3, se encola, desencola o imprime
+el velor del primer elemento de la cola.
 /*/
 struct Elem{
   int x;
@@ -40,7 +40,9 @@ struct Cola{
       if(pri -> next != pri){
         pri -> prev -> next = pri -> next;
         pri -> next -> prev = pri -> prev;
+        Elem *pointer = pri;
         pri = pri -> next;
+        delete pointer;
       }else{  //Hay un solo elemento en la cola
         pri = NULL;
       }
