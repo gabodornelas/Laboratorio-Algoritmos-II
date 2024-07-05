@@ -125,7 +125,7 @@ class Arbol{
         if(aux -> x < y){
           aux = aux -> der;
         }else{
-          resp = find(aux->izq,y);	//Se chequea si y esta repetido, en tal caso estara a la izquierda
+          resp = find(aux->izq,y);	//Se chequea si "y" esta repetido, en tal caso estara a la izquierda
           if(resp == -1) 
             return aux -> posicion;
           else return resp;  
