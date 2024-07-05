@@ -7,7 +7,7 @@ sus respectivas inicializiaciones) y la clase Arbol, un arbol binario rojo-negro
 inicializacion, así como las funciones rotacion izquierda, rotacion derecha, revision, insertar y buscar)
 /*/
 struct Nodo{
-  int x, posicion;    //la posicion es la del orden en que se resive el valor
+  int x, posicion;    //la posicion es la del orden en que se recibe el valor
   string color;
   Nodo *izq;
   Nodo *der;
